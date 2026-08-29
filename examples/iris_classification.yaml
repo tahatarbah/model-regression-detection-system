@@ -1,0 +1,23 @@
+name: iris_classification
+description: Classical iris classifier regression demo
+task_type: classification
+dataset:
+  path: iris.csv
+  feature_columns:
+    - sepal_length
+    - sepal_width
+    - petal_length
+    - petal_width
+  label_column: species
+metrics:
+  - name: accuracy
+    direction: higher_is_better
+    threshold:
+      absolute: 0.05
+  - name: f1
+    direction: higher_is_better
+    threshold:
+      absolute: 0.05
+model:
+  adapter: classical
+  path: iris_good.joblib

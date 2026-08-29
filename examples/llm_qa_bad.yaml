@@ -1,0 +1,27 @@
+name: llm_qa
+description: Same Q&A suite with intentionally wrong mock answers (candidate regression)
+task_type: llm
+dataset:
+  path: qa.jsonl
+  input_field: input
+  expected_field: expected
+  id_field: id
+metrics:
+  - name: exact_match
+    direction: higher_is_better
+    threshold:
+      absolute: 0.2
+scorer:
+  type: exact_match
+model:
+  adapter: llm
+  model: mock-bad
+  system_prompt: "Answer briefly."
+  prompt_template: "{input}"
+  mock_responses:
+    "capital of France": "Lyon"
+    "2 + 2": "5"
+    "largest planet": "Saturn"
+    "blue and yellow": "purple"
+    "Hamlet": "Dickens"
+    "*": "nope"

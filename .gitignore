@@ -1,0 +1,17 @@
+.mrds/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+web/node_modules/
+web/dist/
+examples/*.joblib
+*.db
+.DS_Store

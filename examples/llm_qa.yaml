@@ -1,0 +1,33 @@
+name: llm_qa
+description: Small factual Q&A suite for LLM regression detection
+task_type: llm
+dataset:
+  path: qa.jsonl
+  input_field: input
+  expected_field: expected
+  id_field: id
+metrics:
+  - name: exact_match
+    direction: higher_is_better
+    threshold:
+      absolute: 0.2
+  - name: latency_ms
+    direction: lower_is_better
+    threshold:
+      absolute: 5000
+scorer:
+  type: exact_match
+model:
+  adapter: llm
+  model: gpt-4o-mini
+  system_prompt: "Answer with a short factual answer only. No explanation."
+  prompt_template: "{input}"
+  temperature: 0.0
+  max_tokens: 32
+  mock_responses:
+    "capital of France": "Paris"
+    "2 + 2": "4"
+    "largest planet": "Jupiter"
+    "blue and yellow": "green"
+    "Hamlet": "Shakespeare"
+    "*": "I don't know"
